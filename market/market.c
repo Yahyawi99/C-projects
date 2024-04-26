@@ -34,7 +34,7 @@ Date creation_date()
   return d;
 }
 
-Date creation_dateTime()
+DateTime creation_dateTime()
 {
   DateTime d;
   printf("Jour: ");

@@ -11,7 +11,7 @@ typedef struct
 // Personne
 typedef struct
 {
-  char Nom[20];
+  char nom[20];
   int CIN[8];
   Date date_nai;
   char pays[20];
@@ -60,3 +60,4 @@ typedef struct {
 // ======================Functions======================
 // =====================================================
 
+void build_market(STR_market *m,int n);

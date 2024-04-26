@@ -31,6 +31,21 @@ Date creation_date()
   printf("Année: ");
   scanf("%d", &d.annee);
 
+  return d;
+}
+
+Date creation_dateTime()
+{
+  DateTime d;
+  printf("Jour: ");
+  scanf("%d", &d.jour);
+
+  printf("Mois: ");
+  scanf("%d", &d.mois);
+
+  printf("Année: ");
+  scanf("%d", &d.annee);
+
   printf("heure: ");
   scanf("%d", &d.heure);
 
@@ -92,7 +107,7 @@ STR_commande creation_commande()
   scanf("%d", &c.numero);
 
   printf("**Date et heure:\n");
-  c.dateTime = creation_date();
+  c.dateTime = creation_dateTime();
 
   printf("**Client:\n");
   c.client = creation_personne();
@@ -136,9 +151,9 @@ STR_caisse creation_caisse()
 
 void build_market(STR_market *m, int n)
 {
-  printf("*************************\n");
+  printf("**************************************************\n");
   printf("Creation\n");
-  printf("*************************\n");
+  printf("**************************************************\n");
 
   for (int i = 0; i < n; i++)
   {
@@ -172,6 +187,11 @@ void build_market(STR_market *m, int n)
 // =============================================
 
 void afficher_date(Date d)
+{
+  printf("%d/%d/%d\n", d.jour, d.mois, d.annee);
+}
+
+void afficher_dateTime(DateTime d)
 {
   printf("%d/%d/%d-%d:%d\n", d.jour, d.mois, d.annee, d.heure, d.min);
 }
@@ -207,7 +227,7 @@ void afficher_commande(STR_commande c)
   printf("numéro: %d", c.numero);
 
   printf("**Date et heure:\n");
-  afficher_date(c.dateTime);
+  afficher_dateTime(c.dateTime);
 
   printf("**Client:\n");
   afficher_personne(c.client);
@@ -236,9 +256,9 @@ void afficher_caisse(STR_caisse c)
 
 void affichage(STR_market m)
 {
-  printf("*************************\n");
+  printf("**************************************************\n");
   printf("Affichage\n");
-  printf("*************************\n");
+  printf("**************************************************\n");
   for (int i = 0; i < m.numOfCaisse; i++)
   {
     afficher_caisse(m.listeOfCaisse[i]);

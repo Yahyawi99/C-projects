@@ -4,9 +4,16 @@ typedef struct
   int jour;
   int mois;
   int annee;
+} Date;
+
+typedef struct
+{
+  int jour;
+  int mois;
+  int annee;
   int heure;
   int min;
-} Date;
+} DateTime;
 
 // Personne
 typedef struct
@@ -35,7 +42,7 @@ typedef struct
 typedef struct
 {
   int numero;
-  Date dateTime;
+  DateTime dateTime;
   STR_personne client;
   int numOfLigneCommande;
   STR_ligneCommande listeOfLigneCommande[10];

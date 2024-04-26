@@ -72,3 +72,5 @@ typedef struct
 void build_market(STR_market *m, int n);
 
 void affichage(STR_market m);
+
+void modification(STR_market *m, int numeroDeCaisse);

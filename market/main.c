@@ -8,6 +8,7 @@ int main()
 
   build_market(&myMarket, 1);
   affichage(myMarket);
+  modification(&myMarket, 1175);
 
   return 0;
 }

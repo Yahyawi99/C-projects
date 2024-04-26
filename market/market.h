@@ -25,39 +25,43 @@ typedef struct
 } STR_produit;
 
 // Ligne de commande
-typedef struct {
+typedef struct
+{
   STR_produit produit;
   int quantite;
 } STR_ligneCommande;
 
 // commande
-typedef struct {
+typedef struct
+{
   int numero;
   Date dateTime;
   STR_personne client;
   int numOfLigneCommande;
   STR_ligneCommande listeOfLigneCommande[10];
   float montant;
-}STR_commande;
+} STR_commande;
 
 // caisse
-typedef struct {
+typedef struct
+{
   int numero;
   STR_personne responsable;
   int numOfCommande;
   STR_commande listeOfCommande[10];
-}STR_caisse;
-
+} STR_caisse;
 
 // market
-typedef struct {
+typedef struct
+{
   int numOfCaisse;
   STR_caisse listeOfCaisse[10];
-}STR_market;
-
+} STR_market;
 
 // =====================================================
 // ======================Functions======================
 // =====================================================
 
-void build_market(STR_market *m,int n);
+void build_market(STR_market *m, int n);
+
+void affichage(STR_market m);

@@ -3,13 +3,16 @@ typedef struct
   int jour;
   int mois;
   int annee;
+  int heure;
+  int min;
 } Date;
 
 typedef struct
 {
   char Nom[20];
+  int CIN[8];
   Date date_nai;
-  char origine[20];
+  char pays[20];
 } STR_P;
 
 typedef struct

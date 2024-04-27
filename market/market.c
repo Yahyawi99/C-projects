@@ -203,7 +203,7 @@ void afficher_personne(STR_personne p)
 
 void afficher_produit(STR_produit p)
 {
-  printf("Désignation: %s\n", p.designation);
+  printf("Désignation: %d\n", p.designation);
   printf("Prix: %.2f\n", p.prix);
 }
 

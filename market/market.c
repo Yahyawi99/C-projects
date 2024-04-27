@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "market.h"
 
 // =============================================
@@ -192,15 +193,15 @@ void afficher_personne(STR_personne p)
 
 void afficher_produit(STR_produit p)
 {
-  printf("Désignation: %s", p.designation);
-  printf("Prix: %.2f", p.prix);
+  printf("Désignation: %s\n", p.designation);
+  printf("Prix: %.2f\n", p.prix);
 }
 
 void afficher_ligneCommande(STR_ligneCommande lc)
 {
   afficher_produit(lc.produit);
 
-  printf("Quantité: %d", lc.quantite);
+  printf("Quantité: %d\n", lc.quantite);
 }
 
 void afficher_commande(STR_commande c)
@@ -282,6 +283,10 @@ void modifier_caisse(STR_caisse c)
 
 void modification(STR_market *m, int numeroDeCaisse)
 {
+  printf("**************************************************\n");
+  printf("Modification\n");
+  printf("**************************************************\n");
+
   int index = search(*m, numeroDeCaisse);
 
   if (index == -1)
@@ -292,3 +297,36 @@ void modification(STR_market *m, int numeroDeCaisse)
 
   modifier_caisse(m->listeOfCaisse[index]);
 };
+
+// =============================================
+// =============================================
+// =============================================
+// =============================================
+// =============================================
+// Historique (Question 6)
+// =============================================
+// =============================================
+// =============================================
+// =============================================
+// =============================================
+
+void afficher_historique(STR_market m, char CIN[])
+{
+  printf("**************************************************\n");
+  printf("Historique\n");
+  printf("**************************************************\n");
+
+  for (int i = 0; i < m.numOfCaisse; i++)
+  {
+    for (int j = 0; j < m.listeOfCaisse[i].numOfCommande; j++)
+    {
+      if (strcmp(m.listeOfCaisse[i].listeOfCommande[j].client.CIN, CIN) != 0)
+        continue;
+
+      for (int k = 0; k < m.listeOfCaisse[i].listeOfCommande[j].numOfLigneCommande; k++)
+      {
+        afficher_ligneCommande(m.listeOfCaisse[i].listeOfCommande[j].listeOfLigneCommande[k]);
+      }
+    }
+  }
+}

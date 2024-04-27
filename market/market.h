@@ -19,7 +19,7 @@ typedef struct
 typedef struct
 {
   char nom[20];
-  int CIN[8];
+  char CIN[8];
   Date date_nai;
   char pays[20];
 } STR_personne;
@@ -74,3 +74,5 @@ void build_market(STR_market *m, int n);
 void affichage(STR_market m);
 
 void modification(STR_market *m, int numeroDeCaisse);
+
+void afficher_historique(STR_market m, char CIN[]);

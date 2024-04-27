@@ -74,7 +74,7 @@ STR_produit creation_produit()
   STR_produit p;
 
   printf("Saisir une désignation: ");
-  scanf("%s", p.designation);
+  scanf("%d", &p.designation);
 
   printf("Saisir prix du produit: ");
   scanf("%f", &p.prix);
@@ -92,6 +92,17 @@ STR_ligneCommande creation_ligneCommande()
   scanf("%d", &lc.quantite);
 
   return lc;
+}
+
+float calculer_montant(STR_commande c)
+{
+  float m = 0;
+  for (int i = 0; i < c.numOfLigneCommande; i++)
+  {
+    m += c.listeOfLigneCommande[i].produit.prix * c.listeOfLigneCommande[i].quantite;
+  }
+
+  return m;
 }
 
 STR_commande creation_commande()
@@ -116,8 +127,7 @@ STR_commande creation_commande()
     c.listeOfLigneCommande[i] = creation_ligneCommande();
   }
 
-  printf("Saisir montant de la commande: ");
-  scanf("%f", &c.montant);
+  c.montant = calculer_montant(c);
 
   return c;
 }
@@ -342,3 +352,33 @@ void afficher_historique(STR_market m, char CIN[])
 // =============================================
 // =============================================
 // =============================================
+
+float chiffre_affaire(STR_market m, int desi)
+{
+  printf("**************************************************\n");
+  printf("Chiifre d'affaire\n");
+  printf("**************************************************\n");
+
+  float chiffreAff = 0;
+
+  for (int i = 0; i < m.numOfCaisse; i++)
+  {
+    for (int j = 0; j < m.listeOfCaisse[i].numOfCommande; j++)
+    {
+      for (int k = 0; k < m.listeOfCaisse[i].listeOfCommande[j].numOfLigneCommande; k++)
+      {
+        int designation = m.listeOfCaisse[i].listeOfCommande[j].listeOfLigneCommande[k].produit.designation;
+
+        if (designation != desi)
+          continue;
+
+        float prix = m.listeOfCaisse[i].listeOfCommande[j].listeOfLigneCommande[k].produit.prix;
+        int quantite = m.listeOfCaisse[i].listeOfCommande[j].listeOfLigneCommande[k].quantite;
+
+        chiffreAff += prix * quantite;
+      }
+    }
+  }
+
+  return chiffreAff;
+}

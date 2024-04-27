@@ -6,6 +6,7 @@ int main()
 
   STR_market myMarket;
   char CIN[] = "BK688337";
+  float ca;
 
   build_market(&myMarket, 1);
 
@@ -14,6 +15,9 @@ int main()
   modification(&myMarket, 1175);
 
   afficher_historique(myMarket, CIN);
+
+  ca = chiffre_affaire(myMarket, 112233);
+  printf("%.2f\n", ca);
 
   return 0;
 }

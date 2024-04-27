@@ -27,7 +27,7 @@ typedef struct
 // Produit
 typedef struct
 {
-  char designation[20];
+  int designation;
   float prix;
 } STR_produit;
 
@@ -76,3 +76,5 @@ void affichage(STR_market m);
 void modification(STR_market *m, int numeroDeCaisse);
 
 void afficher_historique(STR_market m, char CIN[]);
+
+float chiffre_affaire(STR_market m, int desi);

@@ -19,7 +19,7 @@ typedef struct
 typedef struct
 {
   char nom[20];
-  char CIN[8];
+  char CIN[10];
   Date date_nai;
   char pays[20];
 } STR_personne;

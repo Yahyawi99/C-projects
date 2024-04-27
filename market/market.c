@@ -356,7 +356,7 @@ void afficher_historique(STR_market m, char CIN[])
 float chiffre_affaire(STR_market m, int desi)
 {
   printf("**************************************************\n");
-  printf("Chiifre d'affaire\n");
+  printf("Chiffre d'affaire\n");
   printf("**************************************************\n");
 
   float chiffreAff = 0;
@@ -394,3 +394,55 @@ float chiffre_affaire(STR_market m, int desi)
 // =============================================
 // =============================================
 // =============================================
+
+typedef struct
+{
+  int numero;
+  float ventes_val;
+} STR_caisse_ventes;
+
+void calculer_ventes(STR_market m, STR_caisse_ventes ventes[])
+{
+
+  for (int i = 0; i < m.numOfCaisse; i++)
+  {
+    ventes[i].numero = m.listeOfCaisse[i].numero;
+    ventes[i].ventes_val = 0;
+
+    for (int j = 0; j < m.listeOfCaisse[i].numOfCommande; j++)
+    {
+      ventes[i].ventes_val += m.listeOfCaisse[i].listeOfCommande[j].montant;
+    }
+  }
+}
+
+int get_min_ventes(STR_caisse_ventes ventes[], int n)
+{
+  STR_caisse_ventes min = ventes[0];
+
+  for (int i = 1; i < n; i++)
+  {
+    if (ventes[i].ventes_val < min.ventes_val)
+      min = ventes[i];
+  }
+
+  return min.numero;
+}
+
+void suppression(STR_market *m)
+{
+  STR_caisse_ventes ventes[m->numOfCaisse];
+
+  calculer_ventes(*m, ventes);
+
+  int numero = get_min_ventes(ventes, m->numOfCaisse);
+
+  int index = search(*m, numero);
+
+  for (int i = index; i < m->numOfCaisse - 1; i++)
+  {
+    m->listeOfCaisse[index] = m->listeOfCaisse[index + 1];
+  }
+
+  m->numOfCaisse = m->numOfCaisse - 1;
+}

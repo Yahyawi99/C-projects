@@ -78,3 +78,5 @@ void modification(STR_market *m, int numeroDeCaisse);
 void afficher_historique(STR_market m, char CIN[]);
 
 float chiffre_affaire(STR_market m, int desi);
+
+void suppression(STR_market *m);

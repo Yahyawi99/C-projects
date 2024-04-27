@@ -19,5 +19,7 @@ int main()
   ca = chiffre_affaire(myMarket, 112233);
   printf("%.2f\n", ca);
 
+  suppression(&myMarket);
+
   return 0;
 }

@@ -125,7 +125,7 @@ void max(arbre A)
 arbre predecesseur(arbre *r)
 {
   arbre p = NULL;
-  if (r != NULL)
+  if (*r != NULL)
   {
     if ((*r)->fd == NULL)
     {
@@ -144,7 +144,7 @@ arbre predecesseur(arbre *r)
 arbre successeur(arbre *r)
 {
   arbre p = NULL;
-  if (r != NULL)
+  if (*r != NULL)
   {
     if ((*r)->fg == NULL)
     {
@@ -177,11 +177,11 @@ void enlever(arbre *r, int x)
     {
       if ((*r)->fg == NULL)
       {
-        (*r) == (*r)->fd;
+        (*r) = (*r)->fd;
       }
       else if ((*r)->fd == NULL)
       {
-        (*r) == (*r)->fg;
+        (*r) = (*r)->fg;
       }
       else
       {

@@ -53,6 +53,7 @@ void insertion(arbre *A, int n)
   }
 }
 
+// Tri
 arbre tri_Tab()
 {
   arbre N = NULL;
@@ -120,12 +121,66 @@ void max(arbre A)
   }
 }
 
+// Supprimer
+arbre predecesseur(arbre *r)
+{
+  arbre p = NULL;
+  if (r != NULL)
+  {
+    if ((*r)->fd == NULL)
+    {
+      p = *r;
+      *r = (*r)->fg;
+    }
+    else
+    {
+      p = predecesseur(&(*r)->fd);
+    }
+  }
+
+  return p;
+}
+
+void enlever(arbre *r, int x)
+{
+  arbre res = NULL;
+  if (*r != NULL)
+  {
+    if (x > (*r)->num)
+    {
+      enlever(&(*r)->fd, x);
+    }
+    else if (x < (*r)->num)
+    {
+      enlever(&(*r)->fg, x);
+    }
+    else
+    {
+      if ((*r)->fg == NULL)
+      {
+        (*r) == (*r)->fd;
+      }
+      else if ((*r)->fd == NULL)
+      {
+        (*r) == (*r)->fg;
+      }
+      else
+      {
+        res = predecesseur(&(*r)->fg);
+        (*r)->num = res->num;
+      }
+    }
+  }
+}
+
 int main()
 {
   arbre r = tri_Tab();
 
   min(r);
   max(r);
+
+  enlever(&r, 5);
 
   return 0;
 }

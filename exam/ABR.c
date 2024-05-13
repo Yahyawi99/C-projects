@@ -177,10 +177,15 @@ int main()
 {
   arbre r = tri_Tab();
 
-  min(r);
-  max(r);
+  infixe(r);
 
-  enlever(&r, 5);
+  printf("\n");
+
+  enlever(&r, 4);
+
+  infixe(r);
+
+  printf("\n");
 
   return 0;
 }

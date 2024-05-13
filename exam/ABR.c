@@ -141,6 +141,25 @@ arbre predecesseur(arbre *r)
   return p;
 }
 
+arbre successeur(arbre *r)
+{
+  arbre p = NULL;
+  if (r != NULL)
+  {
+    if ((*r)->fg == NULL)
+    {
+      p = *r;
+      *r = (*r)->fd;
+    }
+    else
+    {
+      p = successeur(&(*r)->fg);
+    }
+  }
+
+  return p;
+}
+
 void enlever(arbre *r, int x)
 {
   arbre res = NULL;
@@ -166,7 +185,7 @@ void enlever(arbre *r, int x)
       }
       else
       {
-        res = predecesseur(&(*r)->fg);
+        res = successeur(&(*r)->fd);
         (*r)->num = res->num;
       }
     }
@@ -181,7 +200,7 @@ int main()
 
   printf("\n");
 
-  enlever(&r, 4);
+  enlever(&r, 8);
 
   infixe(r);
 

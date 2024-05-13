@@ -200,7 +200,7 @@ int main()
 
   printf("\n");
 
-  enlever(&r, 8);
+  enlever(&r, 0);
 
   infixe(r);
 

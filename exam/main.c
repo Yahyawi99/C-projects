@@ -10,7 +10,7 @@ struct noeud
 typedef struct noeud *arbre;
 
 // creation
-arbre creation(arbre root, int n)
+arbre creation(int n)
 {
   arbre N;
   N = (arbre)malloc(sizeof(struct noeud));
@@ -74,6 +74,5 @@ int hauteur(arbre A)
 
 int main()
 {
-
   return 0;
 }

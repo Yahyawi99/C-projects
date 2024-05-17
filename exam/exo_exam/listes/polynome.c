@@ -38,28 +38,15 @@ Polynomme somme(Polynomme P, Polynomme Q)
 
   if (P != NULL)
   {
-    while (P != NULL)
-    {
-      nv = (Polynomme)malloc(sizeof(struct poly));
-      nv->coeff = P->coeff;
-      nv->suiv = NULL;
-      dernier = nv;
-
-      P = P->suiv;
-    }
+    dernier->suiv = P;
+    return S;
   }
 
   if (Q != NULL)
   {
-    while (Q != NULL)
-    {
-      nv = (Polynomme)malloc(sizeof(struct poly));
-      nv->coeff = P->coeff;
-      nv->suiv = NULL;
-      dernier = nv;
 
-      Q = Q->suiv;
-    }
+    dernier->suiv = Q;
+    return S;
   }
 
   return S;
@@ -67,5 +54,44 @@ Polynomme somme(Polynomme P, Polynomme Q)
 
 int main()
 {
+
+  Polynomme P, x, y, Q, z, S;
+
+  P = (Polynomme)malloc(sizeof(struct poly));
+  P->coeff = 2;
+  P->suiv = NULL;
+
+  x = (Polynomme)malloc(sizeof(struct poly));
+  x->coeff = 1;
+  x->suiv = NULL;
+  P->suiv = x;
+
+  y = (Polynomme)malloc(sizeof(struct poly));
+  y->coeff = 3;
+  y->suiv = NULL;
+  x->suiv = y;
+
+  //************
+
+  Q = (Polynomme)malloc(sizeof(struct poly));
+  Q->coeff = 1;
+  Q->suiv = NULL;
+
+  z = (Polynomme)malloc(sizeof(struct poly));
+  z->coeff = 5;
+  z->suiv = NULL;
+  Q->suiv = z;
+
+  S = NULL;
+  S = somme(P, Q);
+
+  while (S != NULL)
+  {
+    printf("%d,", S->coeff);
+    S = S->suiv;
+  }
+
+  printf("\n");
+
   return 0;
 }

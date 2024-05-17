@@ -8,12 +8,12 @@ struct noeud
   struct noeud *PF;
   struct noeud *FR;
 };
-typedef struct noeud *famille;
+typedef struct noeud *arbre;
 
 // ==========
-famille chercher(famille r, char NomDonne)
+arbre chercher(arbre r, char NomDonne[])
 {
-  famille p = NULL;
+  arbre p = NULL;
   if (r == NULL || strcmp(r->Nom, NomDonne) == 0)
   {
     return r;
@@ -21,10 +21,58 @@ famille chercher(famille r, char NomDonne)
   else
   {
     p = chercher(r->PF, NomDonne);
+
     if (p != NULL)
       return p;
     else
-      chercher(r->FR, NomDonne);
+      return chercher(r->FR, NomDonne);
+  }
+}
+
+// =======
+int enfant(arbre Y, char X[])
+{
+
+  arbre p = Y->PF;
+
+  while (p != NULL && strcmp(X, p->Nom) != 0)
+    p = p->FR;
+
+  if (p == NULL)
+    return 0;
+  else
+    return 1;
+}
+
+// ======
+void naissance(arbre r, char NomPere[], char NomBebe[])
+{
+  arbre p, q, r, copy;
+
+  p = chercher(r, NomPere);
+
+  if (p != NULL)
+  {
+    q = (arbre)malloc(sizeof(struct noeud));
+    strcpy(p->Nom, NomBebe);
+    q->PF = NULL;
+    q->FR = NULL;
+
+    if (p->PF == NULL)
+    {
+      p->PF = q;
+    }
+    else
+    {
+      r = p->FR;
+      while (r != NULL)
+      {
+        copy = r;
+        r = r->FR;
+      }
+
+      copy->FR = q;
+    }
   }
 }
 
